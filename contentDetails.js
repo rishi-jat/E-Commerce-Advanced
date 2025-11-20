@@ -85,18 +85,19 @@ function dynamicContentDetails(ob)
     buttonDiv.appendChild(buttonTag)
 
     buttonText = document.createTextNode('Add to Cart')
-    buttonTag.onclick  =   function()
-    {
-        let order = id+" "
-        let counter = 1
-        if(document.cookie.indexOf(',counter=')>=0)
-        {
-            order = id + " " + document.cookie.split(',')[0].split('=')[1]
-            counter = Number(document.cookie.split(',')[1].split('=')[1]) + 1
+    buttonTag.onclick = function() {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let existing = cart.find(item => item.id == ob.id);
+        if (existing) {
+            existing.quantity += 1;
+        } else {
+            cart.push({ id: ob.id, quantity: 1 });
         }
-        document.cookie = "orderId=" + order + ",counter=" + counter
-        document.getElementById("badge").innerHTML = counter
-        console.log(document.cookie)
+        localStorage.setItem('cart', JSON.stringify(cart));
+        // Update badge
+        let counter = cart.reduce((sum, item) => sum + item.quantity, 0);
+        let badge = document.getElementById('badge');
+        if (badge) badge.innerHTML = counter;
     }
     buttonTag.appendChild(buttonText)
 

@@ -50,6 +50,15 @@ function dynamicClothingSection(ob) {
 let mainContainer = document.getElementById("mainContainer");
 let containerClothing = document.getElementById("containerClothing");
 let containerAccessories = document.getElementById("containerAccessories");
+
+// Update cart badge
+function updateCartBadge() {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let counter = cart.reduce((sum, item) => sum + item.quantity, 0);
+  let badge = document.getElementById('badge');
+  if (badge) badge.innerHTML = counter;
+}
+updateCartBadge();
 // mainContainer.appendChild(dynamicClothingSection('hello world!!'))
 
 // BACKEND CALLING

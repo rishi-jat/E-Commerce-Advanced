@@ -1,5 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     updateCartDisplay();
+    // Update cart badge
+    let cart = getCartItems();
+    let counter = cart.reduce((sum, item) => sum + item.quantity, 0);
+    let badge = document.getElementById('badge');
+    if (badge) badge.innerHTML = counter;
 });
 
 function getCartItems() {
