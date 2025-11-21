@@ -704,64 +704,6 @@ const signature = CryptoJS.HmacSHA256(stringToSign, secretKey)
 
 ---
 
-## 🎓 Viva Questions & Answers
-
-### **Q1: Why did you choose this tech stack?**
-**A:** I chose vanilla JavaScript for better understanding of core concepts. HTML/CSS for structure and styling. jQuery for easy plugin integration like Slick Carousel. The combination is lightweight, fast, and doesn't require complex build processes.
-
-### **Q2: How does the cart persist across page reloads?**
-**A:** I used localStorage API which stores data in the browser. When adding items, I save the cart array as JSON string. On page load, I retrieve and parse it. This persists even after closing the browser.
-
-### **Q3: Explain the dynamic content loading mechanism.**
-**A:** I created a load() function that uses XMLHttpRequest to fetch HTML files (header, footer, etc.) and injects them into placeholder divs. This promotes code reusability - I write the header once and include it on all pages.
-
-### **Q4: How do you handle product details from URL?**
-**A:** I pass the product ID as a URL parameter: `contentDetails.html?12`. On the details page, I use `location.search.split('?')[1]` to extract the ID, then fetch that specific product from the API.
-
-### **Q5: What is the purpose of Maven wrapper?**
-**A:** Maven wrapper (mvnw) ensures everyone uses the same Maven version. Users don't need to install Maven separately. It downloads the correct version automatically when running `./mvnw`.
-
-### **Q6: How does the cart badge counter work?**
-**A:** I use the reduce() method to sum all quantities in the cart array: `cart.reduce((sum, item) => sum + item.quantity, 0)`. This gives the total count which I display in the badge.
-
-### **Q7: Explain the authentication flow.**
-**A:** User enters credentials in signin.html. On successful login, I store user info in localStorage. On other pages, I check if 'user' exists in localStorage. If yes, I change "Sign In" to "Account" in the navigation.
-
-### **Q8: Why use both MockAPI and FakeStore API?**
-**A:** Initially I used MockAPI for custom product structure. Later added FakeStore API as an alternative to show flexibility in API integration. In production, I'd choose one consistent API.
-
-### **Q9: How is the Slick Carousel initialized?**
-**A:** After the slider HTML is loaded dynamically, I use jQuery to initialize Slick with configuration options like autoplay, speed, dots. jQuery must load before Slick initialization.
-
-### **Q10: What security concerns exist in this implementation?**
-**A:** Current issues: API keys exposed in client-side code, no input sanitization, no HTTPS enforcement, localStorage vulnerable to XSS. In production, I'd move API calls to backend, add input validation, implement proper authentication, and use secure cookies.
-
----
-
-## 🚧 Challenges Faced
-
-### **Challenge 1: Asynchronous Loading Issues**
-**Problem:** Components loaded in wrong order, Slick carousel initialized before slider HTML was loaded.
-**Solution:** Used synchronous XMLHttpRequest for critical components, ensured jQuery loads before Slick initialization.
-
-### **Challenge 2: Cart Data Synchronization**
-**Problem:** Cart counter didn't update immediately after adding items.
-**Solution:** Created updateCartBadge() function, called it after every cart modification.
-
-### **Challenge 3: Product Detail Image Preview**
-**Problem:** Clicking preview images didn't update main image.
-**Solution:** Used closure in onclick handler to capture correct image URL, updated src of main image element.
-
-### **Challenge 4: Decimal Price Calculations**
-**Problem:** JavaScript floating point arithmetic errors (0.1 + 0.2 = 0.30000000000000004).
-**Solution:** Used toFixed(2) to round to 2 decimal places for display.
-
-### **Challenge 5: Amazon API Authentication**
-**Problem:** Complex AWS4 signature generation required.
-**Solution:** Used CryptoJS library for HMAC-SHA256 signing, followed AWS documentation carefully.
-
----
-
 ## 🔮 Future Enhancements
 
 ### **1. Backend Implementation**
@@ -841,7 +783,7 @@ This project is licensed under the terms specified in the LICENSE file.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Thanks to MockAPI for providing free API endpoints
 - Slick Carousel for the smooth slider experience
@@ -866,5 +808,4 @@ This project is licensed under the terms specified in the LICENSE file.
 6. **Practice demo:** Be ready to demonstrate features working live
 7. **Explain decisions:** Why you chose certain approaches over alternatives
 
-Good luck with your viva! 🎓
 🚀 Advanced E-Commerce Platform | Fully Responsive &amp; API-Powered 🛒  A feature-rich e-commerce website with modern UI, dynamic product listings, secure payments, and seamless user experience. Built using Java (Spring Boot), HTML, CSS, and JavaScript, with API integration for real-world shopping functionality.
