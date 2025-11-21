@@ -5,6 +5,16 @@ document.addEventListener("DOMContentLoaded", function () {
     let counter = cart.reduce((sum, item) => sum + item.quantity, 0);
     let badge = document.getElementById('badge');
     if (badge) badge.innerHTML = counter;
+
+    // Checkout button handler
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    if (checkoutBtn) {
+        checkoutBtn.onclick = function() {
+            localStorage.removeItem('cart');
+            if (badge) badge.innerHTML = 0;
+            window.location.href = 'orderPlaced.html';
+        }
+    }
 });
 
 function getCartItems() {
